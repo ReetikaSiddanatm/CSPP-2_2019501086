@@ -22,7 +22,12 @@ public class BinaryToDecimal {
     public static int binaryToDecimal(String s) {
         int result=0;
         int pos=0;
-        for(int i=s.length())
+        for(int i=s.length()-1; i>=0;i--){
+         if(s.charAt(i)=='1'){
+             result += Math.pow(2,pos);
+             
+         }   pos+=1;
+        }return(result);
         
     }
 }
