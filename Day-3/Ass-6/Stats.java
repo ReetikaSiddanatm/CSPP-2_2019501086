@@ -88,24 +88,33 @@ public class Stats {
      * @param arr, the input array.
      * @return the mode of the array, 0 otherwise if there is no mode.
      */
-    public static double mode(int[] arr) {
-        //  Your code goes here....
-        if(arr.length>0){
-        double mode =( (3* median(arr)) - (2* mean(arr)));
-        return mode;
-        }
-         //return mode;        
-        else{
-        return (0.0);
-        }
-        //for(int i=0; i< arr.length;i++){
-              
-         
-            
+     public static int mode(int[] arr) {
+            //  Your code goes here....
+            int l=arr.length, count=0, maxCount=0,value=0,r=0;
+            Arrays.sort(arr);
+            value=arr[0];
+            for(int i=1;i<=l-1;i++){
+                if(value==arr[i]){
+                    count+=1;
+                    if(count>maxCount){
+                        maxCount=count;
+                        r=value;
+                    }
+                }else{
+                    value=arr[i];
+                    count=0;
+                }
+            }
+            if(maxCount==0){
+                return 0;
+            }
+            return r;
+        }       
+                
               
         
                           
-}
+
         
 
     /**
