@@ -12,6 +12,7 @@
  * Output : false
  * 
  * @author Siva Sankar
+ * @author Reetika
  */
 
  public class IcyHot {

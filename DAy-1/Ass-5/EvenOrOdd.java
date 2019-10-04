@@ -2,6 +2,7 @@
  * Given n, return true if n is even otherwise false.
  * 
  * @author Siva Sankar
+ * @ Reetika.
  */
 
 public class EvenOrOdd {
