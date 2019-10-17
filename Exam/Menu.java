@@ -92,7 +92,7 @@ public class Menu {
             count++;
         } else {
             System.out.println("Testcase 5 failed");
-        }
+        
 
 
         //  Testcase 6:
@@ -330,9 +330,15 @@ public class Menu {
             System.out.println("***************************************");
             System.out.println("Congratulations!!! All Testcases passed");
             System.out.println("***************************************");
-            System.out.println();
+            System.out.println("");
         }
-    }
+            
+            
+
+            
+        
+    
+
 
     /**
      * This method returns the String verions of all the usres

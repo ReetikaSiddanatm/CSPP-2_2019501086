@@ -14,7 +14,7 @@ public class SocialNetwork {
      * users indicates the actual users in the network
      */
     User[] users;
-    User[] connection;
+    
 
     /**
      * The size indicates the numebr of users in the network
@@ -40,14 +40,36 @@ public class SocialNetwork {
      */
     public void createDataStructure(String str) {
         // TO DO
-        if(str!= ""){
-          this.network = str;
-        }
         // Your code goes here
-        else{
-        return;
+        if(str.length() == 0){
+        	return;
+        }
+       	// System.out.println(str);
+       	String[] input = str.split(";");
+       	// System.out.println(input[0]);
+       	for(int i = 0; i < input.length;i++){
+
+       		String[] tokens = input[i].split(" is connected to ");
+       		User src = getUser(tokens[0]);
+       		if(src == null){
+       			src = new User(tokens[0], null);
+       			addUser(src);
+       		}
+       		String[] frnds = tokens[1].split(",");
+       		
+       		for(int j = 0; j < frnds.length; j++){
+       			User frnd = getUser(frnds[j]);
+       			if(frnd == null){
+       				frnd = new User(frnds[j], null);
+       				addUser(frnd);
+       			}
+       			src.addConnection(frnd);
+       		}
+       	}
+       	
     }
-    }
+        
+    
 
     private boolean searchUser(User user) {
         for (int i = 0; i < size; i++) {
@@ -84,15 +106,22 @@ public class SocialNetwork {
     public void addUser(User userA) {
         // TODO
         // Your code goes here
-        
-               users[size] =  userA;
-               size++;
-        
+        User u = getUser(userA.getUserName());
+        if(u != null){
+        	// System.out.println(userA.getUserName());
+        	return;
+        }
+        users[size++] = userA;
+        return;
+    }
+
+            
+                   
         
 
 
     
-    }
+    
 
     /**
      * This method takes two users (objects) as arguments and 
@@ -109,15 +138,18 @@ public class SocialNetwork {
     public void addConnection(User userA, User userB) {
         // TODO
         // Your code goes here
-        
-        if(searchUser(userA) && searchUser(userB)== true){
-         connection[size] = userB; 
-         userA.connectionUsers[size]= connection[size];
-         size++;
-                 }
-                
-        
+        if(userA == null || userB == null){
+        	return;
+        }
+        if(!searchUser(userA) || !searchUser(userB)){
+        	return;
+        }
+        userA.addConnection(userB);
     }
+        
+     
+        
+    
 
     /**
      * This method takes a user object as an argument that returns the 
@@ -132,21 +164,13 @@ public class SocialNetwork {
     public User[] getConnections(User userA) {
         // TODO
         // Your code goes here
-        User[] us= new User[10];
-        
-        if(searchUser(userA)== true){
+        if(searchUser(userA)){
+        	return userA.getConnections();
             
-            
-            for(int i=0; i <= userA.connectionUsers.length; i++){
-                    
-                  us[i] = userA.connectionUsers ;
-            }
-            
-            return us;
+        }else{
+        	return null;
         }
-            
-        return null;
-    }
+        }
 
     /**
      * This method returns the common connections of userA and userB.
@@ -162,16 +186,26 @@ public class SocialNetwork {
     public User[] getCommonConnections(User userA, User userB) {
         // TODO
         // Your code goes here
-        User[] a ;
-        a = new User[10];
-        if(searchUser(userA) && searchUser(userB)== true){
-            if(us.getConnection(userA) .equals(us.getConnections(userB))){
-                a = us.getConnection(userA);
-                return a;
-            }
-
+        
+        if(userA == null || userB == null){
+        	return null;
         }
-        return null;
+        if(!searchUser(userA) || !searchUser(userB)){
+        	return null;
+        }
+        User[] common = new User[10];
+        int len = 0;
+        User[] common1 = userA.getConnections();
+        User[] common2 = userB.getConnections();
+        for(int i = 0; i < common1.length;i++){
+        	for(int j = 0; j < common2.length;j++){
+        		if(common1[i].equals(common2[j])){
+        			common[len++] = common1[i];
+        		}
+        	}
+        }
+        return common;
+        
     }
 
     /**
