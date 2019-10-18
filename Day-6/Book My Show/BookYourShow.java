@@ -6,7 +6,7 @@ public class BookYourShow{
         this.show = new Show[500];
         this.numberOfShows = 0;
     }
-    public void addAshow(Show show){
+    public void addAShow(Show show){
         this.show[numberOfShows] = show;
         numberOfShows++;
     }
