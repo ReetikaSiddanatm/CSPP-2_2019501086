@@ -14,7 +14,7 @@ import javax.lang.model.util.ElementScanner6;
  * @author Siva Sankar
  */
 
- public class PositiveNegative {
+ public class positiveNegative {
 
     /**
      * This method should return true if one is negative and one is positive.
