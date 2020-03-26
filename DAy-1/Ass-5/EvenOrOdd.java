@@ -5,7 +5,7 @@
  * @ Reetika.
  */
 
-public class EvenOrOdd {
+public class evenOrOdd {
 
     /**
      * This method returns true if it is an even number false otherwise.
