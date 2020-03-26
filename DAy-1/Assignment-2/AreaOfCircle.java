@@ -4,7 +4,7 @@
  * @author Siva Sankar
  * @ Reetika
  */
-public class AreaOfCircle {
+public class areaOfCircle {
     
     private static final double PI = 3.14159;
 
